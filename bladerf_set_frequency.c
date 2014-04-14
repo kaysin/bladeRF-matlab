@@ -7,7 +7,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {
     struct bladerf *dev;
 	bladerf_module mod;
-	int ret, freq;
+	int ret;
+	uint64_t freq;
 	long long *ip;
 	int *m_ptr, *freq_ptr;
 
@@ -18,7 +19,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 	dev = (struct bladerf *)*ip;
 	mod = (bladerf_module)*(double *)mxGetData(prhs[1]);
-	freq = (int)*(double *)mxGetData(prhs[2]);
+	freq = (uint64_t)*(double *)mxGetData(prhs[2]);
 
 	
 	ret = bladerf_set_frequency(dev, mod, freq);
